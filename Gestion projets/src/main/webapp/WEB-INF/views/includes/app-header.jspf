@@ -1,0 +1,69 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+
+<div class="app-header">
+    <div class="app-header-inner">
+        <a class="app-brand" href="${pageContext.request.contextPath}${sessionScope.role eq 'ADMIN' ? '/admin/dashboard' : '/employe/projets'}">
+            <span class="app-brand-mark">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5v13.5H3.75V5.25Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9.75h7.5M8.25 14.25h4.5" />
+                </svg>
+            </span>
+
+            <span class="app-brand-text">
+                <strong>Gestion des projets</strong>
+                <small>${sessionScope.role eq 'ADMIN' ? 'Espace administration' : 'Espace employe'}</small>
+            </span>
+        </a>
+
+        <nav class="app-nav" aria-label="Navigation principale">
+            <c:if test="${sessionScope.role eq 'ADMIN'}">
+                <a class="app-nav-link ${fn:contains(pageContext.request.requestURI, '/admin/dashboard') ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}/admin/dashboard">
+                    Dashboard
+                </a>
+                <a class="app-nav-link ${fn:contains(pageContext.request.requestURI, '/admin/categories') ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}/admin/categories">
+                    Cat&eacute;gories
+                </a>
+                <a class="app-nav-link ${fn:contains(pageContext.request.requestURI, '/admin/utilisateurs') ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}/admin/utilisateurs">
+                    Utilisateurs
+                </a>
+                <a class="app-nav-link ${fn:contains(pageContext.request.requestURI, '/admin/projets') ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}/admin/projets">
+                    Projets
+                </a>
+                <a class="app-nav-link ${fn:contains(pageContext.request.requestURI, '/admin/affectations') ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}/admin/affectations">
+                    Affectations
+                </a>
+            </c:if>
+
+            <c:if test="${sessionScope.role eq 'EMPLOYE'}">
+                <a class="app-nav-link ${fn:contains(pageContext.request.requestURI, '/employe/projets') ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}/employe/projets">
+                    Mes projets
+                </a>
+                <a class="app-nav-link ${fn:contains(pageContext.request.requestURI, '/employe/employes-par-projet') ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}/employe/projets">
+                    Mon &eacute;quipe
+                </a>
+            </c:if>
+        </nav>
+
+        <div class="app-header-actions">
+            <a class="logout-icon-btn"
+               href="${pageContext.request.contextPath}/logout"
+               title="Se déconnecter"
+               aria-label="Se déconnecter">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6A2.25 2.25 0 0 0 5.25 5.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H9.75" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 9l3 3-3 3" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
